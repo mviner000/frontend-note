@@ -48,7 +48,7 @@ const error = ref<string | null>(null);
 // Fetch notes from the API
 const fetchNotes = async () => {
   try {
-    const response = await axios.get<Note[]>('http://127.0.0.1:8000/api/notes/');
+    const response = await axios.get<Note[]>('https://gjclibrary.com/api/notes/');
     notes.value = response.data;
   } catch (error) {
     console.error('Error fetching notes:', error);
@@ -62,7 +62,7 @@ onMounted(fetchNotes);
 // Function to create a new note
 const createNote = async () => {
   try {
-    const response = await axios.post<Note>('http://127.0.0.1:8000/api/notes/', newNote.value);
+    const response = await axios.post<Note>('https://gjclibrary.com/api/notes/', newNote.value);
     notes.value.push(response.data);
     newNote.value.title = ''; // Clear input fields
     newNote.value.content = ''; // Clear input fields
@@ -76,7 +76,7 @@ const createNote = async () => {
 // Function to delete a note
 const deleteNote = async (noteId: number) => {
   try {
-    await axios.delete(`http://127.0.0.1:8000/api/notes/${noteId}`);
+    await axios.delete(`https://gjclibrary.com/api/notes/${noteId}`);
     notes.value = notes.value.filter(note => note.id !== noteId);
     setError(null); // Clear error
   } catch (error) {
